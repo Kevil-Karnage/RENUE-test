@@ -10,7 +10,7 @@ public class Filtration {
     static char lastFilterAction;
 
 
-    public static List<Airport> filterAndSort(String filter, String fileName) throws Exception {
+    public static int filterAndSort(String filter, String fileName) throws Exception {
 
         filterDescription(filter, lastPriority);
 
@@ -85,7 +85,7 @@ public class Filtration {
     }
 
     private static Filter parseFilter(String str) throws Exception {
-        int column = Integer.parseInt("" + str.charAt(7));
+        int column = Integer.parseInt("" + str.charAt(7)) - 1;
         char action;
         int actionIndex;
         if (str.contains(">")) {
@@ -102,9 +102,8 @@ public class Filtration {
         }
 
         String value = String.copyValueOf(str.toCharArray(), actionIndex + 1, str.length() - actionIndex - 1);
-
-        Filter filter = new Filter(column, action, value);
-        return filter;
+        value = value.replaceAll("\'", "\"");
+        return new Filter(column, action, value);
     }
 
     private static void sortFilters () {

@@ -6,6 +6,10 @@ public class Airport implements Comparable<Airport>{
     String name;
     String[] data;
 
+    public Airport(String name, String[] data) {
+        this.name = name;
+        this.data = data;
+    }
 
     @Override
     public int compareTo(Airport o) {

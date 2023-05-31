@@ -22,30 +22,6 @@ public class ConjunctionFilter implements Comparable<ConjunctionFilter>{
         return columns.size();
     }
 
-    public List<Integer> getColumns() {
-        return columns;
-    }
-
-    public void setColumns(List<Integer> columns) {
-        this.columns = columns;
-    }
-
-    public List<Character> getActions() {
-        return actions;
-    }
-
-    public void setActions(List<Character> actions) {
-        this.actions = actions;
-    }
-
-    public List<String> getValues() {
-        return values;
-    }
-
-    public void setValues(List<String> values) {
-        this.values = values;
-    }
-
 
     public void addFilter(int column, char action, String value) {
         columns.add(column);
@@ -55,11 +31,6 @@ public class ConjunctionFilter implements Comparable<ConjunctionFilter>{
 
     public void addFilter(Filter f) {
         addFilter(f.column, f.action, f.value);
-    }
-    public void addConjunctionFilter(ConjunctionFilter filter) {
-        columns.addAll(filter.getColumns());
-        actions.addAll(filter.getActions());
-        values.addAll(filter.getValues());
     }
 
     public boolean isCorrect(String[] arr) {

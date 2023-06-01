@@ -13,10 +13,7 @@ public class Main {
         // фильтруем и сортируем список
         List<Airport> airports = Filtration.filterAndSort(filter, fileName);
 
-        System.out.println("Введите начало названия аэропорта:");
-        String beginAirportName = scn.nextLine();
-
-        search(airports, beginAirportName);
+        searching(airports, scanner);
     }
 
     private static void search(List<Airport> airports, String beginAirportName) {

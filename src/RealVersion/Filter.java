@@ -13,10 +13,4 @@ public class Filter{
         this.action = action;
         this.value = value;
     }
-
-    public boolean isCorrect(String[] arr) {
-        return action == '=' && arr[column].equals(value) ||
-                (action == '>' && Integer.parseInt(arr[column]) > Integer.parseInt(value)) ||
-                (action == '<' && Integer.parseInt(arr[column]) < Integer.parseInt(value));
-    }
 }

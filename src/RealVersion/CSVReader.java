@@ -7,30 +7,24 @@ import java.util.*;
 
 public class CSVReader {
 
-    static List<Airport> airports = new ArrayList<>();
+    private static String csvSplitBy = ",";
 
-    public static int readAndFilter(String fileName, List<ConjunctionFilter> filters) {
-        int count = 0;
-
+    public static List<Airport> readAndFilter(String fileName, List<ConjunctionFilter> filters) {
         String line;
-        String csvSplitBy = ",";
+        List<Airport> airports = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName));) {
             while ((line = br.readLine()) != null) {
-
                 String[] lineArray = line.split(csvSplitBy);
-                if (isCorrect(filters, lineArray)) {
-                    addAirport(lineArray);
-                    count++;
-                }
-            }
+
+                if (isCorrect(filters, lineArray))
+                    airports.add(new Airport(lineArray[1], lineArray));            }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        System.out.println("Done");
-        return count;
+        return airports;
     }
 
     private static boolean isCorrect(List<ConjunctionFilter> filters, String[] lineArr) {
@@ -43,7 +37,4 @@ public class CSVReader {
         return true;
     }
 
-    private static void addAirport(String[] arr) {
-        airports.add(new Airport(arr[1], arr));
-    }
 }

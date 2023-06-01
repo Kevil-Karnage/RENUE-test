@@ -5,19 +5,17 @@ import java.util.*;
 public class Filtration {
 
     static List<ConjunctionFilter> filters = new ArrayList<>();
-    static int lastPriority = 0;
-
     static char lastFilterAction;
 
 
-    public static int filterAndSort(String filter, String fileName) throws Exception {
-
-        filterDescription(filter, lastPriority);
-
+    public static List<Airport> filterAndSort(String filter, String fileName) throws Exception {
+        filterDescription(filter, 0);
         filters.removeIf(x -> x.size() == 0);
         sortFilters();
 
-        return CSVReader.readAndFilter(fileName, filters);
+        List<Airport> airports = CSVReader.readAndFilter(fileName, filters);
+        airports.sort(Airport::compareTo);
+        return airports;
     }
 
     private static void filterDescription(String filter, int priority) throws Exception {
@@ -63,7 +61,6 @@ public class Filtration {
     private static void addFilter(StringBuilder s, int priority) throws Exception {
         if (lastFilterAction != '&') {
             addNewConjunctionFilter(priority);
-            lastPriority = priority;
         }
 
         if (!s.toString().equals("")) {

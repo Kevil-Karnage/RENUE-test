@@ -6,17 +6,12 @@ public class Main {
     static String fileName = "airports.csv";
 
     public static void main(String[] args) throws Exception {
-        Scanner scn = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Введите фильтр: ");
-//        String filter = scn.nextLine();
-//        String filter = "column[1]>10&column[5]='IFJ'";
-        String filter = "column[1]>10";
-//        String filter = "column[1]>10&(column[2]=’GKA’&column[3]=’Three’||column[4]<200)&column[5]<250";
+        String filter = scanner.nextLine();
 
         // фильтруем и сортируем список
-        int count = Filtration.filterAndSort(filter, fileName);
-
-        List<Airport> airports = CSVReader.airports;
+        List<Airport> airports = Filtration.filterAndSort(filter, fileName);
 
         System.out.println("Введите начало названия аэропорта:");
         String beginAirportName = scn.nextLine();

@@ -44,6 +44,7 @@ public class ConjunctionFilter implements Comparable<ConjunctionFilter>{
 
     private boolean isCorrectColumn(String arrValue, char action, String value) {
         return action == '=' && arrValue.equals(value) ||
+                (action == '!' && !arrValue.equals(value)) ||
                 (action == '>' && Integer.parseInt(arrValue) > Integer.parseInt(value)) ||
                 (action == '<' && Integer.parseInt(arrValue) < Integer.parseInt(value));
     }

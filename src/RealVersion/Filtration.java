@@ -88,12 +88,17 @@ public class Filtration {
         int column = Integer.parseInt("" + str.charAt(7)) - 1;
         char action;
         int actionIndex;
-        if (str.contains(">")) {
+        if (str.contains("<")) {
+            if (str.contains(">")) {
+                action = '!';
+                actionIndex = str.indexOf(">");
+            } else {
+                action = '<';
+                actionIndex = str.indexOf("<");
+            }
+        } else if (str.contains(">")) {
             action = '>';
             actionIndex = str.indexOf(">");
-        } else if (str.contains("<")) {
-            action = '<';
-            actionIndex = str.indexOf("<");
         } else if (str.contains("=")) {
             action = '=';
             actionIndex = str.indexOf("=");

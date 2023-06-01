@@ -1,6 +1,8 @@
-package RealVersion;
+package autocomplete;
 
 import java.util.*;
+
+import static autocomplete.Searching.searching;
 
 public class Main {
     static String fileName = "airports.csv";
@@ -11,12 +13,10 @@ public class Main {
         String filter = scanner.nextLine();
 
         // фильтруем и сортируем список
-        List<Airport> airports = Filtration.filterAndSort(filter, fileName);
-
+        List<Airport> airports = Filtration.getAndSortAirportsFromFile(filter, fileName);
+        // запускаем поиск
         searching(airports, scanner);
     }
 
-    private static void search(List<Airport> airports, String beginAirportName) {
 
-    }
 }

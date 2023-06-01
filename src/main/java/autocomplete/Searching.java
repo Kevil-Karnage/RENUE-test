@@ -81,10 +81,10 @@ public class Searching {
             int mid = low + (high - low) / 2;
             int compare = list.get(mid).compareTo(valueToFind);
             if (compare > 0) {
-                high = mid - 1;
+                high = mid;
 
             } else if (compare < 0) {
-                low = mid + 1;
+                low = mid;
 
             } else {
                 // для поиска первого ищем такой элемент, чтобы ПЕРЕД НИМ шёл неподходящий
@@ -94,7 +94,7 @@ public class Searching {
                         break;
 
                     } else
-                        high = mid - 1;
+                        high = mid;
 
                 } else {
                     // для поиска последнего - такой, чтобы ПОСЛЕ НЕГО шел неподходящий
@@ -103,7 +103,7 @@ public class Searching {
                         break;
 
                     } else
-                        low = mid - 1;
+                        low = mid;
 
                 }
             }

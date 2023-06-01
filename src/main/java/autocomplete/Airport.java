@@ -6,23 +6,13 @@ import java.util.Locale;
 /**
  * Класс хранения строки (аэропорта)
  */
-public class Airport implements Comparable<Airport>{
+public class Airport{
     String name;
     String[] data;
 
     public Airport(String name, String[] data) {
         this.name = name;
         this.data = data;
-    }
-
-    /**
-     * сравнение объектов класса Airport по названию аэропорта
-     * @param a the object to be compared.
-     * @return
-     */
-    @Override
-    public int compareTo(Airport a) {
-        return compareTo(a.name);
     }
 
     /**
@@ -48,7 +38,6 @@ public class Airport implements Comparable<Airport>{
         return 0;
 
     }
-
 
     @Override
     public String toString() {

@@ -21,7 +21,23 @@ public class Filtration {
         sortFilters();
 
         List<Airport> airports = CSVReader.readFromFileAndFilter(fileName, filters);
-        airports.sort(Airport::compareTo);
+        airports.sort(new Comparator<Airport>() {
+            @Override
+            public int compare(Airport o1, Airport o2) {
+                String s1 = o1.name.toLowerCase(Locale.ROOT).replaceAll("\"", "");
+                String s2 = o2.name.toLowerCase(Locale.ROOT).replaceAll("\"", "");
+
+                for (int i = 0; i < Integer.min(s1.length(), s2.length()); i++) {
+                    char char1 = s1.charAt(i);
+                    char char2 = s2.charAt(i);
+
+                    if (char1 != char2)
+                        return (int) char1 - (int) char2;
+                }
+
+                return 0;
+            }
+        });
         return airports;
     }
 

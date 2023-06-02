@@ -36,6 +36,12 @@ public class CSVReader {
         return airports;
     }
 
+    /**
+     * Проверка считанного массива строк на соответствие списку фильтров
+     * @param filters список фильтров
+     * @param lineArr массив строк (данные строки из .csv файла)
+     * @return correct = true, not correct = false
+     */
     private static boolean isCorrect(List<Filter> filters, String[] lineArr) {
         for (Filter f : filters) {
             if (!f.isCorrect(lineArr)) {

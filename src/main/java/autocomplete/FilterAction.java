@@ -11,7 +11,7 @@ public enum FilterAction {
 
     final String action;
 
-    public static FilterAction getCorrectAction(char symbol) throws FilterActionException {
+    public static FilterAction getCorrectAction(String symbol) throws FilterActionException {
         for (FilterAction fa : FilterAction.values()) {
             if (fa.action.equals(symbol)) {
                 return fa;

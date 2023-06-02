@@ -13,7 +13,7 @@ public class Main {
         String filter = scanner.nextLine();
 
         // фильтруем и сортируем список
-        List<Airport> airports = Filtration.getAndSortAirportsFromFile(filter, fileName);
+        List<CSVModel> airports = Filtration.getAndSortAirportsFromFile(filter, fileName);
         // запускаем поиск
         searching(airports, scanner);
     }

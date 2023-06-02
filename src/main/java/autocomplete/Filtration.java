@@ -147,22 +147,22 @@ public class Filtration {
      */
     private static Filter parseFilter(String str) throws FiltrationException {
         int column = Integer.parseInt("" + str.charAt(7)) - 1;
-        char action;
+        String action;
         int actionIndex;
         if (str.contains("<>")) {
-            action = '!';
+            action = "<>";
             actionIndex = str.indexOf(">");
 
         } else if (str.contains("<")) {
-            action = '<';
+            action = "<";
             actionIndex = str.indexOf("<");
 
         } else if (str.contains(">")) {
-            action = '>';
+            action = ">";
             actionIndex = str.indexOf(">");
 
         } else if (str.contains("=")) {
-            action = '=';
+            action = "=";
             actionIndex = str.indexOf("=");
 
         } else {

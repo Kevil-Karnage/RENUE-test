@@ -21,7 +21,7 @@ public class Filter implements Comparable<Filter>{
         this.priority = priority;
     }
 
-    public Filter(int column, char action, String value) throws FilterActionException {
+    public Filter(int column, String action, String value) throws FilterActionException {
         (columns = new ArrayList<>()).add(column);
         (actions = new ArrayList<>()).add(FilterAction.getCorrectAction(action));
         (values = new ArrayList<>()).add(value);
@@ -42,7 +42,7 @@ public class Filter implements Comparable<Filter>{
      * @param action действие (>, <, =, !)
      * @param value значение
      */
-    public void addFilter(int column, char action, String value) throws FilterActionException {
+    public void addFilter(int column, String action, String value) throws FilterActionException {
         columns.add(column);
         actions.add(FilterAction.getCorrectAction(action));
         values.add(value);

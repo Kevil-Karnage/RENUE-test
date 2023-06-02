@@ -10,10 +10,10 @@ public class Filtration {
 
     /**
      * получение отфильтрованных и отсортированных строк файла
-     * @param filter
-     * @param fileName
-     * @return
-     * @throws Exception
+     * @param filter фильтр в строковом формате
+     * @param fileName название файла для чтения моделей
+     * @return Список прочитанных и отсортированных моделей из файла
+     * @throws FiltrationException при некорректном фильтре
      */
     public static List<CSVModel> getAndSortAirportsFromFile(String filter, String fileName) throws FiltrationException {
         describeFilters(filter, 0);
@@ -146,6 +146,9 @@ public class Filtration {
      * @throws Exception
      */
     private static Filter parseFilter(String str) throws FiltrationException {
+        if (str.length() < 11 && str.length() != 0) {
+            throw new FiltrationException("Некорректный фильтр");
+        }
         int column = Integer.parseInt("" + str.charAt(7)) - 1;
         String action;
         int actionIndex;

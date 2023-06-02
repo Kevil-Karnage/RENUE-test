@@ -60,8 +60,8 @@ public class Filter implements Comparable<Filter>{
 
     /**
      * Проверка массива строк на соответствие фильтру
-     * @param arr
-     * @return
+     * @param arr массив строк
+     * @return соответствует = true, не соответствует = false
      */
     public boolean isCorrect(String[] arr) {
         boolean isCorrect= true;
@@ -76,11 +76,11 @@ public class Filter implements Comparable<Filter>{
     }
 
     /**
-     * Проверка столбца на соответствие фильтру
-     * @param arrValue
-     * @param action
-     * @param value
-     * @return
+     * Проверка столбца из массива на соответствие фильтру по значению
+     * @param arrValue значение столбца из массива
+     * @param action действие
+     * @param value значение
+     * @return соответствует = true, не соответствует = false
      */
     private boolean isCorrectColumn(String arrValue, FilterAction action, String value) {
         return action == FilterAction.EQUALS && arrValue.equals(value) ||

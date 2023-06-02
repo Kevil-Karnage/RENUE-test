@@ -21,7 +21,8 @@ public class CSVReader {
                 String[] lineArray = line.split(csvSplitBy);
 
                 if (isCorrect(filters, lineArray))
-                    airports.add(new Airport(lineArray[1], lineArray));            }
+                    airports.add(new CSVModel(1, lineArray));
+            }
 
         } catch (IOException e) {
             e.printStackTrace();

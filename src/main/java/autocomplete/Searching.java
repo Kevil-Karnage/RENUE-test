@@ -90,7 +90,7 @@ public class Searching {
                 low = mid;
 
             } else {
-                // для поиска первого ищем такой элемент, чтобы ПЕРЕД НИМ шёл неподходящий
+                // для поиска первого ищем такой элемент, чтобы ПЕРЕД НИМ шёл неподходящий (или он первый элемент)
                 if (isFirst) {
                     if (mid == 0 || list.get(mid - 1).compareTo(valueToFind) < 0) {
                         index = mid;
@@ -100,7 +100,7 @@ public class Searching {
                         high = mid;
 
                 } else {
-                    // для поиска последнего - такой, чтобы ПОСЛЕ НЕГО шел неподходящий
+                    // для поиска последнего - такой, чтобы ПОСЛЕ НЕГО шел неподходящий (или он последний элемент)
                     if (mid == list.size() - 1 || list.get(mid + 1).compareTo(valueToFind) > 0) {
                         index = mid;
                         break;

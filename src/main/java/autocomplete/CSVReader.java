@@ -17,7 +17,7 @@ public class CSVReader {
      * @param filters список фильтров
      * @return Список
      */
-    public static List<CSVModel> readFromFileAndFilter(String fileName, List<Filter> filters) {
+    public static List<CSVModel> readFromFileAndFilter(String fileName, FilterTree filters) {
         String line;
         List<CSVModel> airports = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -25,7 +25,7 @@ public class CSVReader {
             while ((line = br.readLine()) != null) {
                 String[] lineArray = line.split(csvSplitBy);
 
-                if (isCorrect(filters, lineArray))
+                if (filters.isCorrect(lineArray))
                     airports.add(new CSVModel(1, lineArray));
             }
 

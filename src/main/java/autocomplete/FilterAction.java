@@ -26,6 +26,4 @@ class FilterActionException extends FiltrationException {
     public FilterActionException(String message) {
         super(message);
     }
-
-
 }

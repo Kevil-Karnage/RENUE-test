@@ -19,8 +19,8 @@ public class Main {
                 // фильтруем и сортируем список
                 airports = Filtration.getAndSortAirportsFromFile(filter, fileName);
                 break;
-            } catch (FiltrationException ignored) {
-                System.out.println(ignored);
+            } catch (FiltrationException e) {
+                System.out.println(e);
             }
         }
         // запускаем поиск

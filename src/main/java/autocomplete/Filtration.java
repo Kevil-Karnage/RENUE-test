@@ -47,7 +47,7 @@ public class Filtration {
      * @param priority приоритет фильтра (запись в скобках)
      * @throws Exception
      */
-    private static void describeFilters(String fString, int priority) throws Exception {
+    private static void describeFilters(String fString, int priority) throws FiltrationException {
         StringBuilder currentFilter = new StringBuilder();
 
         int i = 0;
@@ -106,7 +106,7 @@ public class Filtration {
      * @param priority
      * @throws Exception
      */
-    private static void addToFilter(StringBuilder s, int priority) throws Exception {
+    private static void addToFilter(StringBuilder s, int priority) throws FiltrationException {
         if (lastFilterAction != '&') {
             addNewFilter(priority);
         }
@@ -134,7 +134,7 @@ public class Filtration {
      * @param priority
      * @throws Exception
      */
-    private static void addNewFilterAndFill(StringBuilder s, int priority) throws Exception {
+    private static void addNewFilterAndFill(StringBuilder s, int priority) throws FiltrationException {
         addNewFilter(priority);
         addToFilter(s, priority);
     }
@@ -145,29 +145,32 @@ public class Filtration {
      * @return
      * @throws Exception
      */
-    private static Filter parseFilter(String str) throws Exception {
+    private static Filter parseFilter(String str) throws FiltrationException {
         int column = Integer.parseInt("" + str.charAt(7)) - 1;
         char action;
         int actionIndex;
-        if (str.contains("<")) {
-            if (str.contains(">")) {
-                action = '!';
-                actionIndex = str.indexOf(">");
-            } else {
-                action = '<';
-                actionIndex = str.indexOf("<");
-            }
+        if (str.contains("<>")) {
+            action = '!';
+            actionIndex = str.indexOf(">");
+
+        } else if (str.contains("<")) {
+            action = '<';
+            actionIndex = str.indexOf("<");
+
         } else if (str.contains(">")) {
             action = '>';
             actionIndex = str.indexOf(">");
+
         } else if (str.contains("=")) {
             action = '=';
             actionIndex = str.indexOf("=");
+
         } else {
-            throw new Exception("Uncorrected filter: not found action");
+            throw new FiltrationException("Некорректный фильтр: не найдено действие");
         }
 
-        String value = String.copyValueOf(str.toCharArray(), actionIndex + 1, str.length() - actionIndex - 1);
+        String value = String.copyValueOf(str.toCharArray(),
+                actionIndex + 1, str.length() - actionIndex - 1);
         value = value.replaceAll("'", "\"");
         return new Filter(column, action, value);
     }
@@ -189,5 +192,11 @@ public class Filtration {
                 }
             }
         }
+    }
+}
+
+class FiltrationException extends Exception {
+    public FiltrationException(String message) {
+        super(message);
     }
 }

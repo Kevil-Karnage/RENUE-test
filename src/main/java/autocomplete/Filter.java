@@ -42,7 +42,7 @@ public class Filter implements Comparable<Filter>{
      * @param action действие (>, <, =, !)
      * @param value значение
      */
-    public void addFilter(int column, char action, String value) {
+    public void addFilter(int column, char action, String value) throws FilterActionException {
         columns.add(column);
         actions.add(FilterAction.getCorrectAction(action));
         values.add(value);

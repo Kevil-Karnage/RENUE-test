@@ -6,19 +6,16 @@ import java.util.List;
 /**
  * Класс для хранения фильтров к строкам
  */
-public class Filter implements Comparable<Filter>{
+public class Filter {
     private final List<Integer> columns;
     private final List<FilterAction> actions;
     private final List<String> values;
 
-    int priority;
 
-    public Filter(int priority) {
+    public Filter() {
         columns = new ArrayList<>();
         actions = new ArrayList<>();
         values = new ArrayList<>();
-
-        this.priority = priority;
     }
 
     public Filter(int column, FilterAction action, String value) {
@@ -64,7 +61,7 @@ public class Filter implements Comparable<Filter>{
      * @return соответствует = true, не соответствует = false
      */
     public boolean isCorrect(String[] arr) {
-        boolean isCorrect= true;
+        boolean isCorrect = true;
         for (int i = 0; i < columns.size(); i++) {
             isCorrect = isCorrect && isCorrectColumn(
                     arr[columns.get(i)],
@@ -87,10 +84,5 @@ public class Filter implements Comparable<Filter>{
                 (action == FilterAction.NOT_EQUALS && !arrValue.equals(value)) ||
                 (action == FilterAction.OVER && Integer.parseInt(arrValue) > Integer.parseInt(value)) ||
                 (action == FilterAction.LESS && Integer.parseInt(arrValue) < Integer.parseInt(value));
-    }
-
-    @Override
-    public int compareTo(Filter o) {
-        return this.priority - o.priority;
     }
 }

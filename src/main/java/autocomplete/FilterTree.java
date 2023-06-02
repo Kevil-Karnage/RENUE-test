@@ -38,7 +38,7 @@ public class FilterTree {
         boolean isFound = false;
         int i = 0;
         // ищем ||
-        while (i != base.length() - 1) {
+        while (i < base.length() - 1) {
             char symbol = base.charAt(i);
             // если натыкаемся на скобку - пропускаем её всю
             if (symbol == '(') {
@@ -71,7 +71,7 @@ public class FilterTree {
         boolean isFound = false;
         int i = 0;
         // ищем &
-        while (i != base.length() - 1) {
+        while (i < base.length() - 1) {
             char symbol = base.charAt(i);
             // если натыкаемся на скобку - пропускаем её всю
             if (symbol == '(') {
@@ -102,7 +102,9 @@ public class FilterTree {
     private FilterNode searchBrackets(String base) throws FiltrationException {
         FilterNode node = new FilterNode();
 
-        if (base.charAt(0) == '(' && base.charAt(base.length() - 1) == ')') {
+        if (base.length() == 0) {
+            node.filter = Filtration.parseFilter(base);
+        } else if (base.charAt(0) == '(' && base.charAt(base.length() - 1) == ')') {
             node = searchOR(base.substring(1, base.length() - 1));
         } else {
             node.filter = Filtration.parseFilter(base);

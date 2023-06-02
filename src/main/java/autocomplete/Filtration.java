@@ -43,6 +43,9 @@ public class Filtration {
      * @throws FiltrationException
      */
     public static Filter parseFilter(String fString) throws FiltrationException {
+        if (fString.equals(""))
+            return new Filter();
+
         fString = fString.replaceAll(" ", "");
         if (fString.length() < 11 && fString.length() != 0) {
             throw new FiltrationException("Некорректный фильтр");

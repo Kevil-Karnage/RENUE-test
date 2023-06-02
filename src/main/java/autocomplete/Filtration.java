@@ -15,17 +15,17 @@ public class Filtration {
      * @return
      * @throws Exception
      */
-    public static List<Airport> getAndSortAirportsFromFile(String filter, String fileName) throws Exception {
+    public static List<CSVModel> getAndSortAirportsFromFile(String filter, String fileName) throws FiltrationException {
         describeFilters(filter, 0);
         filters.removeIf(x -> x.size() == 0);
         sortFilters();
 
-        List<Airport> airports = CSVReader.readFromFileAndFilter(fileName, filters);
-        airports.sort(new Comparator<Airport>() {
+        List<CSVModel> airports = CSVReader.readFromFileAndFilter(fileName, filters);
+        airports.sort(new Comparator<CSVModel>() {
             @Override
-            public int compare(Airport o1, Airport o2) {
-                String s1 = o1.name.toLowerCase(Locale.ROOT).replaceAll("\"", "");
-                String s2 = o2.name.toLowerCase(Locale.ROOT).replaceAll("\"", "");
+            public int compare(CSVModel o1, CSVModel o2) {
+                String s1 = o1.getName().toLowerCase(Locale.ROOT).replaceAll("\"", "");
+                String s2 = o2.getName().toLowerCase(Locale.ROOT).replaceAll("\"", "");
 
                 for (int i = 0; i < Integer.min(s1.length(), s2.length()); i++) {
                     char char1 = s1.charAt(i);

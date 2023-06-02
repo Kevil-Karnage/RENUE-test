@@ -7,9 +7,9 @@ import java.util.List;
  * Класс для хранения фильтров к строкам
  */
 public class Filter implements Comparable<Filter>{
-    List<Integer> columns;
-    List<Character> actions;
-    List<String> values;
+    private final List<Integer> columns;
+    private final List<FilterAction> actions;
+    private final List<String> values;
 
     int priority;
 
@@ -21,9 +21,9 @@ public class Filter implements Comparable<Filter>{
         this.priority = priority;
     }
 
-    public Filter(int column, char action, String value) {
+    public Filter(int column, char action, String value) throws FilterActionException {
         (columns = new ArrayList<>()).add(column);
-        (actions = new ArrayList<>()).add(action);
+        (actions = new ArrayList<>()).add(FilterAction.getCorrectAction(action));
         (values = new ArrayList<>()).add(value);
     }
 
@@ -44,7 +44,7 @@ public class Filter implements Comparable<Filter>{
      */
     public void addFilter(int column, char action, String value) {
         columns.add(column);
-        actions.add(action);
+        actions.add(FilterAction.getCorrectAction(action));
         values.add(value);
     }
 
@@ -66,7 +66,10 @@ public class Filter implements Comparable<Filter>{
     public boolean isCorrect(String[] arr) {
         boolean isCorrect= true;
         for (int i = 0; i < columns.size(); i++) {
-            isCorrect = isCorrect && isCorrectColumn(arr[columns.get(i)], actions.get(i), values.get(i));
+            isCorrect = isCorrect && isCorrectColumn(
+                    arr[columns.get(i)],
+                    actions.get(i),
+                    values.get(i));
         }
 
         return isCorrect;
@@ -79,11 +82,11 @@ public class Filter implements Comparable<Filter>{
      * @param value
      * @return
      */
-    private boolean isCorrectColumn(String arrValue, char action, String value) {
-        return action == '=' && arrValue.equals(value) ||
-                (action == '!' && !arrValue.equals(value)) ||
-                (action == '>' && Integer.parseInt(arrValue) > Integer.parseInt(value)) ||
-                (action == '<' && Integer.parseInt(arrValue) < Integer.parseInt(value));
+    private boolean isCorrectColumn(String arrValue, FilterAction action, String value) {
+        return action == FilterAction.EQUALS && arrValue.equals(value) ||
+                (action == FilterAction.NOT_EQUALS && !arrValue.equals(value)) ||
+                (action == FilterAction.OVER && Integer.parseInt(arrValue) > Integer.parseInt(value)) ||
+                (action == FilterAction.LESS && Integer.parseInt(arrValue) < Integer.parseInt(value));
     }
 
     @Override

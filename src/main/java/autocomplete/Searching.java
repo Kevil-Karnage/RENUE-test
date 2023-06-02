@@ -11,7 +11,7 @@ public class Searching {
      * @param airports
      * @param scn
      */
-    public static void searching(List<Airport> airports, Scanner scn) {
+    public static void searching(List<CSVModel> airports, Scanner scn) {
         while (true) {
             System.out.println("Введите начало названия аэропорта:");
             String beginAirportName = scn.nextLine();
@@ -28,7 +28,7 @@ public class Searching {
      * @param airports список аэропортов (строк)
      * @param name начало названия аэропорта (второй колонки строки)
      */
-    private static void search(List<Airport> airports, String name) {
+    private static void search(List<CSVModel> airports, String name) {
         Date begin = new Date();
         int firstIndex = searchFirst(airports, name);
         int lastIndex = searchLast(airports, name);
@@ -50,7 +50,7 @@ public class Searching {
      * @param name
      * @return
      */
-    private static int searchFirst(List<Airport> airports, String name) {
+    private static int searchFirst(List<CSVModel> airports, String name) {
         return binarySearch(airports, name, true);
     }
 
@@ -60,7 +60,7 @@ public class Searching {
      * @param name
      * @return
      */
-    private static int searchLast(List<Airport> airports, String name) {
+    private static int searchLast(List<CSVModel> airports, String name) {
         return binarySearch(airports, name, false);
     }
 
@@ -71,7 +71,7 @@ public class Searching {
      * @param isFirst поиск первого/последнего подходящего (first = true, second = false)
      * @return индекс найденного значения
      */
-    private static int binarySearch(List<Airport> list, String valueToFind, boolean isFirst) {
+    private static int binarySearch(List<CSVModel> list, String valueToFind, boolean isFirst) {
         int index = -1;
 
         int low = 0;

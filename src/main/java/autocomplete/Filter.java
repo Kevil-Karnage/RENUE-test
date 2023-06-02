@@ -21,9 +21,9 @@ public class Filter implements Comparable<Filter>{
         this.priority = priority;
     }
 
-    public Filter(int column, String action, String value) throws FilterActionException {
+    public Filter(int column, FilterAction action, String value) {
         (columns = new ArrayList<>()).add(column);
-        (actions = new ArrayList<>()).add(FilterAction.getCorrectAction(action));
+        (actions = new ArrayList<>()).add(action);
         (values = new ArrayList<>()).add(value);
     }
 

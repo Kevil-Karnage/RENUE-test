@@ -34,10 +34,13 @@ public class Searching {
         int lastIndex = searchLast(airports, name);
         Date end = new Date();
 
-        int count = firstIndex == -1 || lastIndex == -1 ? 0: lastIndex - firstIndex + 1;
+        int count = 0;
+        if (firstIndex != 1 && lastIndex != -1) {
+            count = lastIndex - firstIndex + 1;
 
-        for (int i = firstIndex; i <= lastIndex; i++) {
-            System.out.println(airports.get(i).toString());
+            for (int i = firstIndex; i <= lastIndex; i++) {
+                System.out.println(airports.get(i).toString());
+            }
         }
 
         System.out.printf("Количество найденных строк: %d; Время, затраченное на поиск: %d мс\n",
@@ -89,7 +92,7 @@ public class Searching {
             } else {
                 // для поиска первого ищем такой элемент, чтобы ПЕРЕД НИМ шёл неподходящий
                 if (isFirst) {
-                    if (list.get(mid - 1).compareTo(valueToFind) < 0) {
+                    if (mid == 0 || list.get(mid - 1).compareTo(valueToFind) < 0) {
                         index = mid;
                         break;
 
@@ -98,7 +101,7 @@ public class Searching {
 
                 } else {
                     // для поиска последнего - такой, чтобы ПОСЛЕ НЕГО шел неподходящий
-                    if (list.get(mid + 1).compareTo(valueToFind) > 0) {
+                    if (mid == list.size() - 1 || list.get(mid + 1).compareTo(valueToFind) > 0) {
                         index = mid;
                         break;
 

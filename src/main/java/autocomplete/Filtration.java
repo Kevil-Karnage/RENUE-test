@@ -146,26 +146,34 @@ public class Filtration {
      * @throws Exception
      */
     private static Filter parseFilter(String str) throws FiltrationException {
+        str = str.replaceAll(" ", "");
         if (str.length() < 11 && str.length() != 0) {
             throw new FiltrationException("Некорректный фильтр");
         }
-        int column = Integer.parseInt("" + str.charAt(7)) - 1;
-        String action;
+
+        int column;
+        try {
+            String columnString = str.split("[\\[\\]]")[1];
+            column = Integer.parseInt("" + columnString) - 1;
+        } catch (NumberFormatException e) {
+            throw new FiltrationException("Некорректный фильтр");
+        }
+        FilterAction action;
         int actionIndex;
         if (str.contains("<>")) {
-            action = "<>";
+            action = FilterAction.NOT_EQUALS;
             actionIndex = str.indexOf(">");
 
         } else if (str.contains("<")) {
-            action = "<";
+            action = FilterAction.LESS;
             actionIndex = str.indexOf("<");
 
         } else if (str.contains(">")) {
-            action = ">";
+            action = FilterAction.OVER;
             actionIndex = str.indexOf(">");
 
         } else if (str.contains("=")) {
-            action = "=";
+            action = FilterAction.EQUALS;
             actionIndex = str.indexOf("=");
 
         } else {
@@ -174,7 +182,7 @@ public class Filtration {
 
         String value = String.copyValueOf(str.toCharArray(),
                 actionIndex + 1, str.length() - actionIndex - 1);
-        value = value.replaceAll("'", "\"");
+        value = value.replaceAll("['’]", "\"");
         return new Filter(column, action, value);
     }
 

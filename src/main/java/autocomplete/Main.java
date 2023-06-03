@@ -1,8 +1,12 @@
 package autocomplete;
 
+import autocomplete.csv.CSVModel;
+import autocomplete.filterTree.Filtration;
+import autocomplete.filterTree.exceptions.FiltrationException;
+
 import java.util.*;
 
-import static autocomplete.Searching.searching;
+import static autocomplete.search.Searching.searching;
 
 public class Main {
     static String fileName = "airports.csv";

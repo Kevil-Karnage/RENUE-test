@@ -1,4 +1,8 @@
-package autocomplete;
+package autocomplete.filterTree;
+
+import autocomplete.csv.CSVModel;
+import autocomplete.csv.CSVReader;
+import autocomplete.filterTree.exceptions.FiltrationException;
 
 import java.util.*;
 
@@ -87,8 +91,3 @@ public class Filtration {
     }
 }
 
-class FiltrationException extends Exception {
-    public FiltrationException(String message) {
-        super(message);
-    }
-}

@@ -1,4 +1,6 @@
-package autocomplete;
+package autocomplete.search;
+
+import autocomplete.csv.CSVModel;
 
 import java.util.Date;
 import java.util.List;

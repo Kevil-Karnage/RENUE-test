@@ -1,4 +1,6 @@
-package autocomplete;
+package autocomplete.filterTree;
+
+import autocomplete.filterTree.exceptions.FilterNodeActionException;
 
 public enum FilterNodeAction {
     AND("&"),
@@ -23,10 +25,3 @@ public enum FilterNodeAction {
 
 }
 
-class FilterNodeActionException extends FiltrationException {
-    public FilterNodeActionException(String message) {
-        super(message);
-    }
-
-
-}

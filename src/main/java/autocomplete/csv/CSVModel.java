@@ -1,4 +1,4 @@
-package autocomplete;
+package autocomplete.csv;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

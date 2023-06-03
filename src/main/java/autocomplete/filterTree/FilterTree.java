@@ -1,5 +1,6 @@
-package autocomplete;
+package autocomplete.filterTree;
 
+import autocomplete.filterTree.exceptions.FiltrationException;
 import lombok.Getter;
 import lombok.Setter;
 

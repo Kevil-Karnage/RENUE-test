@@ -1,5 +1,6 @@
-package autocomplete;
+package autocomplete.filterTree;
 
+import autocomplete.filterTree.exceptions.FilterActionException;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -22,8 +23,3 @@ public enum FilterAction {
     }
 }
 
-class FilterActionException extends FiltrationException {
-    public FilterActionException(String message) {
-        super(message);
-    }
-}

@@ -1,4 +1,6 @@
-package autocomplete;
+package autocomplete.filterTree;
+
+import autocomplete.filterTree.exceptions.FilterActionException;
 
 import java.util.ArrayList;
 import java.util.List;

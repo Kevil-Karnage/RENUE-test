@@ -1,4 +1,6 @@
-package autocomplete;
+package autocomplete.csv;
+
+import autocomplete.filterTree.FilterTree;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

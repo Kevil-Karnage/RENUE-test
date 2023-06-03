@@ -131,7 +131,6 @@ public class FilterTree {
     }
 
     public boolean isCorrect(String[] stringArr) {
-        boolean isCorrect = head.isCorrect(stringArr);
-        return isCorrect;
+        return head.isCorrect(stringArr);
     }
 }

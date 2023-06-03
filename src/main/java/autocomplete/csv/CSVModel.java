@@ -20,9 +20,6 @@ public class CSVModel {
         return data[column] + Arrays.toString(data);
     }
 
-    public String getName() {
-        return data[column];
-    }
     /**
      * сравнение названия модели со строкой
      * @param string входная строка

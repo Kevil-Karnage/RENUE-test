@@ -43,4 +43,8 @@ public class CSVModel {
         return 0;
 
     }
+
+    public String getName() {
+        return data[column];
+    }
 }
